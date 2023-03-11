@@ -1,0 +1,29 @@
+appName: java-app
+appReplicas: 3
+registrySecret: my-registry-key
+appContainerName: javamysqlapp
+appImage: nanajanashia/demo-app
+appVersion: java-mysql-app
+containerPort: 8080
+
+servicePort: 8080
+
+configName: db-config
+configData:
+  DB_SERVER: my-release-mysql-primary
+
+secretName: db-secret
+secretData:
+  DB_USER: my-user
+  DB_PWD: my-pass
+  DB_NAME: my-app-db
+  MYSQL_ROOT_PASSWORD: secret-root-pass
+
+regularData:
+  {}
+  # MY_ENV: my-value
+
+ingress:
+  hostName: my-java-app.com # set this value to Linode nodebalancer address for LKE
+  pathType: Exact
+  path: /
